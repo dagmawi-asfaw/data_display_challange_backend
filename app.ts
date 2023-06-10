@@ -1,11 +1,9 @@
 import express from 'express';
 import 'dotenv/config';
 import bodyParser from 'body-parser';
-import sequelize from './db/sequelize_db';
- 
-
-
-
+import sequelize from './src/db/sequelize_db';
+import TaskRouter from './src/api/routes/task_routes';
+import Task from './src/db/models/task_model'; 
 
 const app = express();
 
@@ -15,29 +13,24 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.use(function (req, res) {
-  res.setHeader('Content-Type', 'text/plain')
-  res.write('you posted:\n')
-  res.end(JSON.stringify(req.body, null, 2))
-})
-
 const port = process.env.PORT || 3000;
+app.use('/task', TaskRouter);
+ 
 
+sequelize.authenticate().then(async () => {
 
-
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
-
-
-sequelize.authenticate().then(() => {
   console.log('Database connection has been established successfully.');
+ 
+ 
+  await Task.sync({ alter: true });
+
   app.listen(3000, () => {
     return console.log(`Express is listening at http://localhost:${port}`);
   });
+
+
 }).catch((error) => {
-  console.error('Unable to connect to the database: ', error);
+    console.error('Unable to connect to the database: ', error);
 });
 
 

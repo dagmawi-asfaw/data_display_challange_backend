@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "output": "npx tsc",
-    "start-server": "node dist/db/create_db.js &&  node dist/app.js",
-    "create-db": "node dist/db/create_db.js"
+    "create-db": "node dist/src/db/create_db.js",
+    "start-server": "node dist/app.js",
+    "start-dev":"nodemon dist/app.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "mysql2": "^3.3.3",
+    "nodemon": "^2.0.22",
     "sequelize": "^6.32.0"
   }
 }

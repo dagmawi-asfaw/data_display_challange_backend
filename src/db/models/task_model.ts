@@ -1,10 +1,10 @@
 import sequelize from "../sequelize_db";
 import  Sequelize  from "sequelize";
-import Task from "./task_model";
 
-const SubTask = sequelize.define('task', {
+
+const Task = sequelize.define('task',  {
     id: {
-        type: Sequelize.DOUBLE,
+        type: Sequelize.INTEGER,
         primaryKey:true,
     },
     description: {
@@ -19,16 +19,25 @@ const SubTask = sequelize.define('task', {
     quantity: {
         type: Sequelize.DOUBLE,
         allowNull: false,
+        defaultValue:0
     },
     rate:{
         type: Sequelize.DOUBLE,
         allowNull: false,
+        defaultValue:0
     },
-});
+    createdAt: {
+        allowNull: false,
+        defaultValue: Sequelize.fn('now'),
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        defaultValue: Sequelize.fn('now'),
+        type: Sequelize.DATE
+      }
+}  
+);
  
-SubTask.belongsTo(Task, {
-    foreignKey: "taskId"
-});
 
-
-export default SubTask;
+export default Task;

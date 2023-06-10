@@ -14,11 +14,14 @@ class TaskController {
     } 
 
     async create(data: any) { 
-        await Task.create(data);
+      const task =  await Task.create(data);
+      return task;
     }
     
-    async updateById(taskId: number, data: any) { 
-        await Task.update({ id: taskId },data);
+    async updateById(taskId: number, data: any) {
+
+        const task = await Task.update({ id: taskId }, data);
+        return task;
     }
 
     async deleteById(taskId: number) { 
@@ -29,3 +32,6 @@ class TaskController {
         });
     } 
 }
+
+
+export default TaskController;

@@ -31,4 +31,4 @@ SubTask.belongsTo(Task, {
 });
 
 
-module.exports = SubTask;
+export default SubTask;

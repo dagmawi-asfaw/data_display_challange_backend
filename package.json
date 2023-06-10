@@ -4,9 +4,9 @@
   "description": "data display challenge",
   "main": "index.js",
   "scripts": {
-    "test": "test",
-    "output":"npx tsc",
-    "start-server":"node dist/app.js"
+    "output": "npx tsc",
+    "start-server": "node dist/db/create_db.js &&  node dist/app.js",
+    "create-db": "node dist/db/create_db.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,10 @@
   },
   "dependencies": {
     "@types/express": "^4.17.17",
-    "express": "^4.18.2"
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "mysql2": "^3.3.3",
+    "sequelize": "^6.32.0"
   }
 }

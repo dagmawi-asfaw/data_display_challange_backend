@@ -5,10 +5,11 @@ import  Sequelize  from "sequelize";
 const Task = sequelize.define('task',  {
     id: {
         type: Sequelize.INTEGER,
-        primaryKey:true,
+        primaryKey: true,
+        autoIncrement:true,
     },
     description: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1234),
         allowNull: false,
     },
     unit: {
@@ -18,12 +19,17 @@ const Task = sequelize.define('task',  {
     },
     quantity: {
         type: Sequelize.DOUBLE,
-        allowNull: false,
+        allowNull: true,
         defaultValue:0
     },
     rate:{
         type: Sequelize.DOUBLE,
-        allowNull: false,
+        allowNull: true,
+        defaultValue:0
+    },
+    amount:{
+        type: Sequelize.DOUBLE,
+        allowNull: true,
         defaultValue:0
     },
     createdAt: {

@@ -18,6 +18,10 @@ class TaskController {
       return task;
     }
     
+    async bulkCreate(data: Array<any>) { 
+        const task =  await Task.bulkCreate(data);
+        return task;
+      }
     async updateById(taskId: number, data: any) {
 
         const task = await Task.update({ id: taskId }, data);

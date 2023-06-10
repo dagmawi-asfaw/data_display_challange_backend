@@ -1,8 +1,10 @@
 import express from 'express';
 import 'dotenv/config';
 import bodyParser from 'body-parser';
+import Multer from 'multer';
 import sequelize from './src/db/sequelize_db';
 import TaskRouter from './src/api/routes/task_routes';
+import FileUploadRouter from './src/api/routes/file_upload_route';
 import Task from './src/db/models/task_model'; 
 
 const app = express();
@@ -15,7 +17,10 @@ app.use(bodyParser.json())
 
 const port = process.env.PORT || 3000;
 app.use('/task', TaskRouter);
- 
+
+const upload = Multer({ dest: "uploads/" });
+
+app.use('/upload',  FileUploadRouter); 
 
 sequelize.authenticate().then(async () => {
 
